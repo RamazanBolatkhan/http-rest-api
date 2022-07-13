@@ -42,6 +42,10 @@ func testPutArticles(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "PUTING Endpoint Hit")
 }
 
+func testCopyArticles(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "COPY Endpoint Hit")
+}
+
 func handleRequests() {
 
 	myRouter := mux.NewRouter().StrictSlash(true)
@@ -51,6 +55,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/articles", testPostArticles).Methods("POST")
 	myRouter.HandleFunc("/articles", testDeleteArticles).Methods("DELETE")
 	myRouter.HandleFunc("/articles", testPutArticles).Methods("PUT")
+	myRouter.HandleFunc("/articles", testCopyArticles).Methods("COPY")
 	log.Fatal(http.ListenAndServe(":8000", myRouter))
 }
 
